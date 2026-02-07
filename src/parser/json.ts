@@ -7,7 +7,13 @@ export function parseJsonLine(line: string): ZeekRecord | null {
   }
 
   try {
-    const record = JSON.parse(trimmed) as Record<string, unknown>;
+    const parsed = JSON.parse(trimmed);
+
+    if (typeof parsed !== "object" || parsed === null || Array.isArray(parsed)) {
+      return null;
+    }
+
+    const record = parsed as Record<string, unknown>;
 
     if (record.ts !== undefined) {
       record.ts = normalizeTimestamp(record.ts);

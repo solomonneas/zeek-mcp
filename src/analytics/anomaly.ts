@@ -36,8 +36,11 @@ function detectPortScans(records: ZeekRecord[]): AnomalyResult[] {
   for (const record of records) {
     const src = String(record["id.orig_h"] ?? "");
     const dst = String(record["id.resp_h"] ?? "");
-    const port = record["id.resp_p"] as number;
+    const rawPort = Number(record["id.resp_p"]);
+    const port = Number.isFinite(rawPort) ? rawPort : NaN;
     const connState = String(record.conn_state ?? "");
+
+    if (Number.isNaN(port)) continue;
 
     if (connState === "S0" || connState === "REJ") {
       if (!srcToPorts.has(src)) srcToPorts.set(src, new Set());
@@ -122,10 +125,10 @@ function detectUnusualPorts(records: ZeekRecord[]): AnomalyResult[] {
   const unusualPortCounts = new Map<number, number>();
 
   for (const record of records) {
-    const port = record["id.resp_p"] as number;
+    const port = Number(record["id.resp_p"]);
     const service = String(record.service ?? "");
 
-    if (port && !commonPorts.has(port) && port > 0 && port < 65536 && !service) {
+    if (Number.isFinite(port) && port > 0 && port < 65536 && !commonPorts.has(port) && !service) {
       unusualPortCounts.set(port, (unusualPortCounts.get(port) ?? 0) + 1);
     }
   }

@@ -65,8 +65,8 @@ export function registerInvestigationTools(
         ]);
 
         const allConn = [...connSrc, ...connDst];
-        const totalOrigBytes = sumField(connSrc, "orig_bytes");
-        const totalRespBytes = sumField(connSrc, "resp_bytes");
+        const totalOrigBytes = sumField(connSrc, "orig_bytes") + sumField(connDst, "resp_bytes");
+        const totalRespBytes = sumField(connSrc, "resp_bytes") + sumField(connDst, "orig_bytes");
 
         const investigation = {
           host: params.ip,

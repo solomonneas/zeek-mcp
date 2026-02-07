@@ -28,10 +28,10 @@ export function detectBeaconing(
   for (const record of records) {
     const src = String(record["id.orig_h"] ?? "");
     const dst = String(record["id.resp_h"] ?? "");
-    const port = record["id.resp_p"] as number;
+    const port = Number(record["id.resp_p"]);
     const ts = record.ts;
 
-    if (!src || !dst || !ts) continue;
+    if (!src || !dst || !Number.isFinite(ts) || !Number.isFinite(port)) continue;
 
     const key = `${src}|${dst}|${port}`;
     if (!pairs.has(key)) pairs.set(key, []);
@@ -77,13 +77,11 @@ export function detectBeaconing(
     for (const r of relatedRecords) {
       const orig = r.orig_bytes as number;
       const resp = r.resp_bytes as number;
-      if (typeof orig === "number") {
-        totalBytes += orig;
-        byteCount++;
-      }
-      if (typeof resp === "number") {
-        totalBytes += resp;
-      }
+      const hasOrig = typeof orig === "number" && Number.isFinite(orig);
+      const hasResp = typeof resp === "number" && Number.isFinite(resp);
+      if (hasOrig) totalBytes += orig;
+      if (hasResp) totalBytes += resp;
+      if (hasOrig || hasResp) byteCount++;
     }
 
     const avgBytes = byteCount > 0 ? totalBytes / byteCount : 0;

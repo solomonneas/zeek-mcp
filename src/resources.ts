@@ -38,7 +38,7 @@ export function registerResources(server: McpServer): void {
     "stats",
     "zeek://stats",
     {
-      description: "Current Zeek log directory statistics and available log files",
+      description: "Supported Zeek log types and field definitions (static metadata, not live sensor data)",
       mimeType: "application/json",
     },
     async () => {

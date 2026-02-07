@@ -357,7 +357,10 @@ function main(): void {
 
   const formatArg = process.argv.find((a) => a.startsWith("--format="));
   if (formatArg) {
-    config.format = formatArg.split("=")[1] as "json" | "tsv";
+    const fmt = formatArg.split("=")[1];
+    if (fmt !== "json") {
+      console.warn(`Warning: only JSON format is currently supported. Ignoring --format=${fmt}`);
+    }
   }
 
   const outArg = process.argv.find((a) => a.startsWith("--output="));

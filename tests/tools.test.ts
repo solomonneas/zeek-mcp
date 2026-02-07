@@ -263,6 +263,7 @@ describe("Query engine with test data", () => {
       limit: 100,
     });
 
+    expect(records.length).toBeGreaterThan(0);
     for (const record of records) {
       expect(record.proto).toBe("tcp");
       expect(record["id.orig_h"]).toBe("192.168.1.100");

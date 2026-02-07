@@ -112,10 +112,15 @@ describe("Beaconing detection", () => {
   it("should not flag random connections", () => {
     const records: ZeekRecord[] = [];
     const baseTime = 1706745600;
+    // Use deterministic irregular intervals instead of Math.random()
+    const irregularOffsets = [
+      3200, 47100, 5800, 72300, 12400, 61900, 28700, 80100,
+      41500, 9300, 55800, 19600, 67200, 34100, 76500,
+    ];
 
     for (let i = 0; i < 15; i++) {
       records.push({
-        ts: baseTime + Math.random() * 86400,
+        ts: baseTime + irregularOffsets[i],
         uid: `C${i}`,
         "id.orig_h": "192.168.1.100",
         "id.orig_p": 50000 + i,

@@ -154,8 +154,10 @@ export async function queryLog(
     }
   }
 
-  const fromTs = timeFrom ? new Date(timeFrom).getTime() / 1000 : undefined;
-  const toTs = timeTo ? new Date(timeTo).getTime() / 1000 : undefined;
+  const fromRaw = timeFrom ? new Date(timeFrom).getTime() / 1000 : undefined;
+  const toRaw = timeTo ? new Date(timeTo).getTime() / 1000 : undefined;
+  const fromTs = fromRaw !== undefined && Number.isFinite(fromRaw) ? fromRaw : undefined;
+  const toTs = toRaw !== undefined && Number.isFinite(toRaw) ? toRaw : undefined;
 
   return allRecords.filter((r) => {
     if (fromTs !== undefined && r.ts < fromTs) return false;

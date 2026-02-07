@@ -177,7 +177,7 @@ npx tsx scripts/generate-zeek-logs.ts --output=/tmp/zeek-logs --format=json
 
 ## Project Structure
 
-```
+```text
 zeek-mcp/
   src/
     index.ts                 # MCP server entry point

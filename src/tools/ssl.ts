@@ -119,7 +119,7 @@ export function registerSslTools(
           }
 
           const version = String(record.version ?? "");
-          if (version === "SSLv3" || version === "TLSv10") {
+          if (version === "SSLv3" || version === "TLSv10" || version === "TLSv11") {
             issues.push(`Deprecated protocol version: ${version}`);
           }
 

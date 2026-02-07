@@ -100,10 +100,14 @@ export function parseTsvRecord(
   }
 
   if (record.ts !== undefined) {
-    record.ts =
+    const tsValue =
       typeof record.ts === "number"
         ? record.ts
         : parseFloat(record.ts as string);
+    if (!Number.isFinite(tsValue)) {
+      return null;
+    }
+    record.ts = tsValue;
   }
 
   return record as ZeekRecord;

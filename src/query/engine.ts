@@ -143,6 +143,8 @@ function matchCidr(ip: string, cidr: string): boolean {
   const [network, prefixStr] = cidr.split("/");
   const prefix = parseInt(prefixStr, 10);
 
+  if (!Number.isInteger(prefix) || prefix < 0 || prefix > 32) return false;
+
   const ipNum = ipv4ToNum(ip);
   const netNum = ipv4ToNum(network);
 

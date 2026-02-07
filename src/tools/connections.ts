@@ -58,9 +58,7 @@ export function registerConnectionTools(
         if (params.maxDuration !== undefined) {
           filters.push({ field: "duration", op: "lte", value: params.maxDuration });
         }
-        if (params.minBytes !== undefined) {
-          filters.push({ field: "orig_bytes", op: "gte", value: params.minBytes });
-        }
+        const minBytes = params.minBytes;
 
         const records = await executeQuery(config, {
           logType: "conn",
@@ -68,15 +66,23 @@ export function registerConnectionTools(
           timeFrom: params.timeFrom,
           timeTo: params.timeTo,
           sortBy: params.sortBy,
-          limit: params.limit,
+          limit: minBytes !== undefined ? undefined : params.limit,
         });
+
+        const filtered = minBytes !== undefined
+          ? records.filter((r) => {
+              const orig = typeof r.orig_bytes === "number" ? r.orig_bytes : 0;
+              const resp = typeof r.resp_bytes === "number" ? r.resp_bytes : 0;
+              return (orig + resp) >= minBytes;
+            }).slice(0, params.limit)
+          : records;
 
         return {
           content: [{
             type: "text" as const,
             text: JSON.stringify({
-              count: records.length,
-              connections: records.map(formatConnection),
+              count: filtered.length,
+              connections: filtered.map(formatConnection),
             }, null, 2),
           }],
         };
