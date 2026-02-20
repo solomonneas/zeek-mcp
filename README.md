@@ -1,6 +1,11 @@
 # Zeek MCP Server
 
-An MCP (Model Context Protocol) server for [Zeek](https://zeek.org/) (formerly Bro), the powerful network analysis framework. This server provides intelligent log parsing, querying, and analysis capabilities over Zeek's rich log ecosystem, enabling LLMs to query connection logs, DNS activity, HTTP requests, SSL certificates, file extractions, and security notices.
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.7-blue?logo=typescript)](https://www.typescriptlang.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-20%2B-green?logo=node.js)](https://nodejs.org/)
+[![MCP](https://img.shields.io/badge/MCP-1.x-purple)](https://modelcontextprotocol.io/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+An MCP (Model Context Protocol) server for [Zeek](https://zeek.org/) (formerly Bro), the powerful network analysis framework. Provides intelligent log parsing, querying, and analysis over Zeek's rich log ecosystem, enabling LLMs to query connection logs, DNS activity, HTTP requests, SSL certificates, file extractions, and security notices.
 
 ## Features
 
@@ -22,7 +27,7 @@ An MCP (Model Context Protocol) server for [Zeek](https://zeek.org/) (formerly B
 ## Installation
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/solomonneas/zeek-mcp.git
 cd zeek-mcp
 npm install
 npm run build
