@@ -14,7 +14,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "lint": "tsc --noEmit",
-    "generate-logs": "tsx scripts/generate-zeek-logs.ts"
+    "generate-logs": "tsx scripts/generate-zeek-logs.ts",
+    "prepublishOnly": "npm run typecheck && npm test && npm run build"
   },
   "engines": {
     "node": ">=20.0.0"
@@ -31,5 +32,10 @@
     "tsx": "^4.19.3",
     "typescript": "^5.7.3",
     "vitest": "^3.0.5"
-  }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ]
 }
