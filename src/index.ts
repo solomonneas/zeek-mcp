@@ -15,14 +15,19 @@ import { registerAnomalyTools } from "./tools/anomaly.js";
 import { registerSuricataTools } from "./tools/suricata.js";
 import { registerSensorTools } from "./tools/sensor.js";
 import { registerDhcpTools } from "./tools/dhcp.js";
+import { registerPcapTools } from "./tools/pcap.js";
+import { registerTheHiveTools } from "./tools/thehive.js";
+import { registerMispTools } from "./tools/misp.js";
+import { registerJa3Tools } from "./tools/ja3.js";
+import { registerBaselineTools } from "./tools/baseline.js";
 import { registerResources } from "./resources.js";
 import { registerPrompts } from "./prompts.js";
 
 const server = new McpServer({
   name: "zeek-mcp",
-  version: "2.0.0",
+  version: "3.0.0",
   description:
-    "MCP server for Zeek + Suricata NIDS - query and analyze network security logs via AI",
+    "MCP server for Zeek + Suricata NIDS with TheHive/MISP integration - query, analyze, hunt, and respond via AI",
 });
 
 const config = getConfig();
@@ -42,9 +47,18 @@ registerDhcpTools(server, config);
 // Analytics tools
 registerBeaconingTools(server, config);
 registerAnomalyTools(server, config);
+registerJa3Tools(server, config);
+registerBaselineTools(server, config);
 
 // Suricata tools
 registerSuricataTools(server);
+
+// PCAP analysis
+registerPcapTools(server);
+
+// Incident response
+registerTheHiveTools(server);
+registerMispTools(server);
 
 // Sensor management
 registerSensorTools(server, config);
