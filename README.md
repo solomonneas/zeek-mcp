@@ -14,6 +14,7 @@ An MCP (Model Context Protocol) server for [Zeek](https://zeek.org/) and [Surica
 - **4 prompts** for guided investigation workflows
 - **Dual format support** - JSON and TSV (Zeek's native tab-separated format)
 - **Suricata integration** - Query eve.json alerts, cross-correlate with Zeek, engine stats
+<!-- content-guard: allow private-ipv4 -->
 - **CIDR matching** - Filter by IP ranges (10.0.0.0/8, 192.168.1.0/24)
 - **IPv6 support** - Full IPv6 CIDR matching
 - **Wildcard matching** - Search domains and URIs with patterns (*.evil.com)
