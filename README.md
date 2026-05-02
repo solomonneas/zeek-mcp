@@ -1,9 +1,19 @@
-# Zeek MCP Server
+<p align="center">
+  <img src="docs/assets/zeek-mcp-banner.jpg" alt="Watercolor cross-log network investigation map for zeek-mcp" width="100%" />
+</p>
 
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.7-blue?logo=typescript)](https://www.typescriptlang.org/)
-[![Node.js](https://img.shields.io/badge/Node.js-20%2B-green?logo=node.js)](https://nodejs.org/)
-[![MCP](https://img.shields.io/badge/MCP-1.x-purple)](https://modelcontextprotocol.io/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+<h1 align="center">zeek-mcp</h1>
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/zeek-mcp"><img src="https://img.shields.io/npm/v/zeek-mcp?style=flat-square&logo=npm&color=cb3837" alt="npm version" /></a>
+  <a href="https://github.com/solomonneas/zeek-mcp/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/solomonneas/zeek-mcp/ci.yml?branch=main&style=flat-square&label=CI&logo=github" alt="CI status" /></a>
+  <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-6.0-3178c6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript 6.0" /></a>
+  <a href="https://nodejs.org/"><img src="https://img.shields.io/badge/Node.js-20%2B-339933?style=flat-square&logo=node.js&logoColor=white" alt="Node.js 20+" /></a>
+  <a href="https://modelcontextprotocol.io/"><img src="https://img.shields.io/badge/MCP%20SDK-1.29-6f42c1?style=flat-square" alt="MCP SDK 1.29" /></a>
+  <a href="https://zeek.org/"><img src="https://img.shields.io/badge/Zeek-NSM-00aeef?style=flat-square" alt="Zeek network security monitoring" /></a>
+  <a href="https://suricata.io/"><img src="https://img.shields.io/badge/Suricata-IDS-f15a24?style=flat-square" alt="Suricata IDS correlation" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow?style=flat-square" alt="MIT license" /></a>
+</p>
 
 An MCP (Model Context Protocol) server for [Zeek](https://zeek.org/) and [Suricata](https://suricata.io/), providing intelligent log parsing, querying, and analysis over network security monitoring data. Enables LLMs to query connection logs, DNS activity, HTTP requests, SSL certificates, file extractions, security notices, IDS alerts, and cross-reference findings between both sensors.
 
